@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import Search from '../Components/Search';
+import FilmDetail from '../Components/FilmDetail';
 
 /* const SearchStackNavigator = createStackNavigator({
   Search: { 
@@ -23,8 +24,9 @@ const Stack = createNativeStackNavigator();
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Rechercher">
         <Stack.Screen name="Rechercher" component={Search} />
+        <Stack.Screen name="Film" component={FilmDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

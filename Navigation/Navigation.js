@@ -6,6 +6,7 @@ import FilmDetail from '../Components/FilmDetail';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Favorites from '../Components/Favorites';
 import { Image, StyleSheet } from 'react-native';
+import Test from '../Components/Test';
 
 const SearchStack = createNativeStackNavigator();
 
@@ -33,28 +34,35 @@ const MoviesTab = createBottomTabNavigator();
 
 function MoviesTabNavigator() {
   return (
-    <MoviesTab.Navigator screenOptions={{ headerShown: false }}>
+    <MoviesTab.Navigator screenOptions={{
+      headerShown: false,
+      tabBarShowLabel: false,
+      tabBarActiveBackgroundColor: '#DDDDDD',
+      tabBarInactiveBackgroundColor: '#FFFFFF'
+    }}>
       <MoviesTab.Screen
         name="Tab_Rechercher"
         options={{
-          tabBarIcon:() => {
-            return <Image source={require('../Images/ic_search.png')} style={styles.icon}/>
-          },
-          tabBarShowLabel: false,
-          tabBarActiveBackgroundColor: '#DDDDDD',
-          tabBarInactiveBackgroundColor: '#FFFFFF'
+          tabBarIcon: () => {
+            return <Image source={require('../Images/ic_search.png')} style={styles.icon} />
+          }
         }} component={SearchStackNavigator} />
       <MoviesTab.Screen
         name="Tab_Favorites"
         options={{
-          tabBarIcon:() => {
-            return <Image source={require('../Images/ic_favorite.png')} style={styles.icon}/>
-          },
-          tabBarShowLabel: false,
-          tabBarActiveBackgroundColor: '#DDDDDD',
-          tabBarInactiveBackgroundColor: '#FFFFFF'
+          tabBarIcon: () => {
+            return <Image source={require('../Images/ic_favorite.png')} style={styles.icon} />
+          }
         }}
         component={FavorisStackNavigator} />
+      {/* <MoviesTab.Screen
+        name="Test"
+        options={{
+          headerShown: true,
+          tabBarIcon: () => {
+            return <Image source={require('../Images/test.png')} style={styles.icon_test} />
+          }
+        }} component={Test} /> */}
     </MoviesTab.Navigator>
   )
 }
@@ -62,6 +70,10 @@ function MoviesTabNavigator() {
 const styles = StyleSheet.create({
   icon: {
     width: 30,
+    height: 30
+  },
+  icon_test: {
+    width: 60,
     height: 30
   }
 })

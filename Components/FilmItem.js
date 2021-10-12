@@ -1,30 +1,33 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, Image, TouchableOpacity, Animated, Dimensions } from 'react-native'
 import { getImageFromApi } from '../API/TMDBApi';
+import FadeIn from '../Animations/FadeIn';
 
 class FilmItem extends React.Component {
 
     render() {
         const { film, displayDetailForFilm, isFavorite } = this.props;
         return (
-            <TouchableOpacity onPress={() => displayDetailForFilm(film.id)}>
-                <View style={styles.main_container}>
-                    <Image style={styles.image} source={{ uri: getImageFromApi(film.poster_path) }} />
-                    <View style={styles.text_container}>
-                        <View style={styles.title_container}>
-                            {isFavorite && <Image source={require('../Images/ic_favorite.png')} style={styles.favorite_image} />}
-                            <Text style={styles.title_text}>{film.title}</Text>
-                            <Text style={styles.vote_text}>{film.vote_average}</Text>
-                        </View>
-                        <View style={styles.description_container}>
-                            <Text style={styles.description} numberOfLines={6}>{film.overview}</Text>
-                        </View>
-                        <View style={styles.date_container}>
-                            <Text style={styles.date}>Sorti le {film.release_date}</Text>
+            <FadeIn>
+                <TouchableOpacity onPress={() => displayDetailForFilm(film.id)}>
+                    <View style={styles.main_container}>
+                        <Image style={styles.image} source={{ uri: getImageFromApi(film.poster_path) }} />
+                        <View style={styles.text_container}>
+                            <View style={styles.title_container}>
+                                {isFavorite && <Image source={require('../Images/ic_favorite.png')} style={styles.favorite_image} />}
+                                <Text style={styles.title_text}>{film.title}</Text>
+                                <Text style={styles.vote_text}>{film.vote_average}</Text>
+                            </View>
+                            <View style={styles.description_container}>
+                                <Text style={styles.description} numberOfLines={6}>{film.overview}</Text>
+                            </View>
+                            <View style={styles.date_container}>
+                                <Text style={styles.date}>Sorti le {film.release_date}</Text>
+                            </View>
                         </View>
                     </View>
-                </View>
-            </TouchableOpacity>
+                </TouchableOpacity>
+            </FadeIn>
         )
     }
 }

@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-      avatar: state.setAvatar.avatar
+    avatar: state.setAvatar.avatar
   };
 }
 export default connect(mapStateToProps)(Avatar);

@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, View, Button, TextInput, ActivityIndicator, Text } from "react-native";
-import { connect } from "react-redux";
 import { getFilmsFromApiWithSearchedText } from "../API/TMDBApi";
 import FilmList from "./FilmList";
 
@@ -83,21 +82,6 @@ class Search extends React.Component {
                     style={styles.textinput}
                     placeholder="Titre du film" />
                 <Button title="Rechercher" onPress={() => this._searchFilms()} />
-                {/* <FlatList
-                    data={this.state.films}
-                    extraData={this.props.favoritesFilm}
-                    keyExtractor={item => item.id.toString()}
-                    onEndReachedThreshold={0.5}
-                    onEndReached={() => {
-                        if (this.page < this.totalPages) {
-                            this._loadFilms()
-                        }
-                    }}
-                    renderItem={({ item }) => <FilmItem
-                        film={item}
-                        displayDetailForFilm={this._displayDetailForFilm}
-                        isFavorite={this.props.favoritesFilm !== undefined && this.props.favoritesFilm.findIndex(object => object.id === item.id) !== -1} />}
-                /> */}
                 <FilmList
                     films={this.state.films} 
                     navigation={this.props.navigation} 
@@ -134,12 +118,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     }
 });
-
-/* const mapStateToProps = (state) => {
-    return {
-        favoritesFilm: state.favoritesFilm
-    };
-}
-export default connect(mapStateToProps)(Search); */
 
 export default Search

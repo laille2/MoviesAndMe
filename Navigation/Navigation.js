@@ -6,7 +6,8 @@ import FilmDetail from '../Components/FilmDetail';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Favorites from '../Components/Favorites';
 import { Image, StyleSheet } from 'react-native';
-import Test from '../Components/Test';
+/* import Test from '../Components/Test'; */
+import News from '../Components/News';
 
 const SearchStack = createNativeStackNavigator();
 
@@ -27,6 +28,17 @@ function FavorisStackNavigator() {
       <FavoritesStack.Screen name="Favoris" component={Favorites} />
       <FavoritesStack.Screen name="Film" component={FilmDetail} />
     </FavoritesStack.Navigator>
+  )
+}
+
+const NewsStack = createNativeStackNavigator();
+
+function NewsStackNavigator() {
+  return (
+    <NewsStack.Navigator initialRouteName="Les Derniers Films">
+      <NewsStack.Screen name="Les Derniers Films" component={News} />
+      <NewsStack.Screen name="Film" component={FilmDetail} />
+    </NewsStack.Navigator>
   )
 }
 
@@ -55,6 +67,14 @@ function MoviesTabNavigator() {
           }
         }}
         component={FavorisStackNavigator} />
+      <MoviesTab.Screen
+        name="Tab_News"
+        options={{
+          tabBarIcon: () => {
+            return <Image source={require('../Images/ic_fiber_new.png')} style={styles.icon} />
+          }
+        }}
+        component={NewsStackNavigator} />
       {/* <MoviesTab.Screen
         name="Test"
         options={{

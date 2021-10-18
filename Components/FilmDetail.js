@@ -8,6 +8,16 @@ import EnlargeShrink from '../Animations/EnlargeShrink'
 
 class FilmDetail extends React.Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            film: undefined,
+            isLoading: true
+        }
+
+        this._shareFilm = this._shareFilm.bind(this)
+    }
+
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state
 
@@ -29,16 +39,6 @@ class FilmDetail extends React.Component {
             shareFilm: this._shareFilm,
             film: this.state.film
         })
-    }
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            film: undefined,
-            isLoading: true
-        }
-
-        this._shareFilm = this._shareFilm.bind(this)
     }
 
     componentDidMount() {

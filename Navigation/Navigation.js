@@ -6,8 +6,8 @@ import FilmDetail from '../Components/FilmDetail';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Favorites from '../Components/Favorites';
 import { Image, StyleSheet } from 'react-native';
-/* import Test from '../Components/Test'; */
 import News from '../Components/News';
+import Viewed from '../Components/Viewed';
 
 const SearchStack = createNativeStackNavigator();
 
@@ -39,6 +39,17 @@ function NewsStackNavigator() {
       <NewsStack.Screen name="Les Derniers Films" component={News} />
       <NewsStack.Screen name="Film" component={FilmDetail} />
     </NewsStack.Navigator>
+  )
+}
+
+const ViewedStack = createNativeStackNavigator();
+
+function ViewedStackNavigator() {
+  return (
+    <ViewedStack.Navigator initialRouteName="Films vus">
+      <ViewedStack.Screen name="Films vus" component={Viewed} />
+      <ViewedStack.Screen name="Film" component={FilmDetail} />
+    </ViewedStack.Navigator>
   )
 }
 
@@ -75,14 +86,14 @@ function MoviesTabNavigator() {
           }
         }}
         component={NewsStackNavigator} />
-      {/* <MoviesTab.Screen
-        name="Test"
+      <MoviesTab.Screen
+        name="Tab_Viewed"
         options={{
-          headerShown: true,
           tabBarIcon: () => {
-            return <Image source={require('../Images/test.png')} style={styles.icon_test} />
+            return <Image source={require('../Images/checked.png')} style={styles.icon} />
           }
-        }} component={Test} /> */}
+        }}
+        component={ViewedStackNavigator} />
     </MoviesTab.Navigator>
   )
 }
@@ -90,10 +101,6 @@ function MoviesTabNavigator() {
 const styles = StyleSheet.create({
   icon: {
     width: 30,
-    height: 30
-  },
-  icon_test: {
-    width: 60,
     height: 30
   }
 })

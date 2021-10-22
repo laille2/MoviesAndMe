@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Share, ActivityIndicator, ScrollView, Text, Image, TouchableOpacity, Platform } from 'react-native'
+import { StyleSheet, View, Share, ActivityIndicator, ScrollView, Text, Image, TouchableOpacity, Platform, Button } from 'react-native'
 import { getFilmDetailFromApi, getImageFromApi } from '../API/TMDBApi'
 import moment from 'moment'
 import numeral from 'numeral'
@@ -16,6 +16,7 @@ class FilmDetail extends React.Component {
         }
 
         this._shareFilm = this._shareFilm.bind(this)
+        this._displayViewedButton = this._displayViewedButton.bind(this)
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -134,11 +135,30 @@ class FilmDetail extends React.Component {
         }
     }
 
+    _displayViewedButton() {
+        const label = this.props.viewedFilms.findIndex(item => item.id === this.state.film.id) !== -1 ? (
+            "Marquer comme non vu"
+        ) : (
+            "Marquer comme vu"
+        )
+        return <Button
+            title={label}
+            style={styles.button_viewed}
+            onPress={() => { this._toggleViewed() }}
+        />
+    }
+
+    _toggleViewed() {
+        const action = { type: 'TOGGLE_VIEWED', value: this.state.film }
+        this.props.dispatch(action)
+    }
+
     render() {
         return (
             <View style={styles.main_container}>
-                {this._displayFilm()}
+                {this.state.film && this._displayFilm()}
                 {this._displayLoading()}
+                {this.state.film && this._displayViewedButton()}
                 {this._displayFloatingActionButton()}
             </View>
         )
@@ -193,7 +213,7 @@ const styles = StyleSheet.create({
         width: 60,
         height: 60,
         right: 30,
-        bottom: 30,
+        bottom: 45,
         borderRadius: 30,
         backgroundColor: '#e91e63',
         justifyContent: 'center',
@@ -202,12 +222,16 @@ const styles = StyleSheet.create({
     share_image: {
         width: 30,
         height: 30
+    },
+    button_viewed: {
+        height: 30
     }
 })
 
 const mapStateToProps = (state) => {
     return {
-        favoritesFilm: state.toggleFavorite.favoritesFilm
+        favoritesFilm: state.toggleFavorite.favoritesFilm,
+        viewedFilms: state.toggleViewed.viewedFilms
     };
 }
 export default connect(mapStateToProps)(FilmDetail)

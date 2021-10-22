@@ -6,7 +6,7 @@ class EnlargeShrink extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            size: new Animated.Value(40),
+            size: this.props.source===require('../Images/ic_favorite.png') ? new Animated.Value(80) : new Animated.Value(40),
         }
     }
 

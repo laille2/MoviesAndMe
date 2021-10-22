@@ -9,15 +9,12 @@ class Viewed extends React.Component {
   render() {
     return (
       <View style={styles.main_container}>
-        <View style={styles.avatar_container}>
-          <Avatar />
-        </View>
-        <Text style={styles.title}>Films déjà vus</Text>
         {this.props.viewedFilms.length > 0 ? (
           <FilmList
             films={this.props.viewedFilms}
             navigation={this.props.navigation}
-            favoriteList={true}
+            searchList={false}
+            showFilmDetails={false}
           />) : (
           <Text style={styles.text}>Aucun film vu</Text>
         )}
@@ -31,15 +28,12 @@ const styles = StyleSheet.create({
   main_container: {
     flex: 1
   },
-  title: {
+  /* title: {
     textAlign: 'center',
     fontSize: 28,
     margin: 5,
     fontWeight: 'bold'
-  },
-  avatar_container: {
-    alignItems: 'center'
-  },
+  }, */
   text: {
     flex: 10,
     textAlign: 'center',

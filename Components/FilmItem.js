@@ -22,7 +22,7 @@ class FilmItem extends React.Component {
                                 <Text style={styles.description} numberOfLines={6}>{film.overview}</Text>
                             </View>
                             <View style={styles.date_container}>
-                                <Text style={styles.date}>Sorti le {film.release_date}</Text>
+                                {film.release_date!=undefined && film.release_date!="" && <Text style={styles.date}>Sorti le {film.release_date}</Text>}
                             </View>
                         </View>
                     </View>

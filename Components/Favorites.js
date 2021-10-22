@@ -17,7 +17,8 @@ class Favorites extends React.Component {
           <FilmList
             films={this.props.favoritesFilm}
             navigation={this.props.navigation}
-            favoriteList={true}
+            searchList={false}
+            showFilmDetails={true}
           />) : (
           <Text style={styles.text}>Aucun film favoris</Text>
         )}

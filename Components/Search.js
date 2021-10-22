@@ -88,7 +88,8 @@ class Search extends React.Component {
                     loadFilms={this._loadFilms} 
                     page={this.page}
                     totalPages={this.totalPages} 
-                    favoriteList={false}
+                    searchList={true}
+                    showFilmDetails={true}
                 />
                 {this._displayLoading()}
             </View>

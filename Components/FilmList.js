@@ -26,12 +26,15 @@ class FilmList extends React.Component {
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => (
                     this.props.showFilmDetails ? (
-                    <FilmItem
-                        film={item}
-                        isFavorite={(this.props.favoritesFilm.findIndex(film => film.id === item.id) !== -1)}
-                        displayDetailForFilm={this._displayDetailForFilm}
-                    />) : (
-                    <ViewedItem film={item}/>)
+                        <FilmItem
+                            film={item}
+                            isFavorite={(this.props.favoritesFilm.findIndex(film => film.id === item.id) !== -1)}
+                            displayDetailForFilm={this._displayDetailForFilm}
+                        />) : (
+                        <ViewedItem
+                            film={item}
+                            displayDetailForFilm={this._displayDetailForFilm}
+                        />)
                 )}
                 onEndReachedThreshold={0.5}
                 onEndReached={() => {

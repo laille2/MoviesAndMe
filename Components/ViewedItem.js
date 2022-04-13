@@ -19,14 +19,17 @@ class ViewedItem extends React.Component {
             this.setState({
                 showDate: bool
             })
-        }
+        } 
     }
 
     render() {
         const { film } = this.props;
         return (
             <FadeIn>
-                <Pressable onLongPress={() => {this._displayDate(true)}} onPressOut={() => {this._displayDate(false)}}>
+                <Pressable 
+                onLongPress={() => {this._displayDate(true)}} 
+                onPressOut={() => {this._displayDate(false)}}
+                onPress={() => {this.props.displayDetailForFilm(film.id)}}>
                     <View style={styles.main_container}>
                         <Image style={styles.image} source={{ uri: getImageFromApi(film.poster_path) }} />
                         <View style={styles.text_container}>

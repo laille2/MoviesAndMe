@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { StyleSheet, View, Text, Image, TouchableOpacity, Animated, Dimensions } from 'react-native'
 import { getImageFromApi } from '../API/TMDBApi';
 import FadeIn from '../Animations/FadeIn';
 
-class FilmItem extends React.Component {
+class FilmItem extends PureComponent {
 
     render() {
         const { film, displayDetailForFilm, isFavorite } = this.props;
